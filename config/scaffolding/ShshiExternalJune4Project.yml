@@ -28,7 +28,7 @@ services:
     version: 10.11.0.0.77
     wpmServer: https://packages.webmethods.io
     wpmRegistry: licensed
-- serviceName: pub.ibmp:getDefaultUser
+- serviceName: pub.ibmp:createDataQueue
   packages:
   - name: WmIBMPowerAdapter
     version: 10.11.0.0.77
@@ -38,12 +38,6 @@ services:
   packages:
   - name: ShshiExternalJune4Project
     version: "1.0"
-  - name: WmIBMPowerAdapter
-    version: 10.11.0.0.77
-    wpmServer: https://packages.webmethods.io
-    wpmRegistry: licensed
-- serviceName: pub.ibmp:createDataQueue
-  packages:
   - name: WmIBMPowerAdapter
     version: 10.11.0.0.77
     wpmServer: https://packages.webmethods.io
