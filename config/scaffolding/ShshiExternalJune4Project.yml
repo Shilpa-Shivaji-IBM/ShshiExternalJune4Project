@@ -12,12 +12,16 @@ packages:
   wpmServer: https://packages.webmethods.io
   wpmRegistry: licensed
 - name: JDBC
+  version: "1.0"
   gitServerName: shshi
   gitUrl: https://github.com/Sephali-Smrutisikha-IBM-1
   gitUsername: Shilpa-Shivaji-IBM
   gitBranch: main
+- name: WmJDBCAdapter
+  wpmServer: https://packages.webmethods.io
+  wpmRegistry: licensed
 services:
-- serviceName: project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections:shshi_ibmp
+- serviceName: project.shshiexternaljune4.integrations:ibmp_bis
   packages:
   - name: ShshiExternalJune4Project
     version: "1.0"
@@ -25,12 +29,10 @@ services:
     version: 10.11.0.0.77
     wpmServer: https://packages.webmethods.io
     wpmRegistry: licensed
-- serviceName: project.shshiexternaljune4.integrations:ibmp_bis
-  packages:
-  - name: ShshiExternalJune4Project
+  - name: JDBC
     version: "1.0"
-  - name: WmIBMPowerAdapter
-    version: 10.11.0.0.77
+  - name: WmJDBCAdapter
+    version: 10.3.0.0.34
     wpmServer: https://packages.webmethods.io
     wpmRegistry: licensed
 - serviceName: pub.ibmp:createDataQueue
@@ -47,71 +49,99 @@ services:
     version: 10.11.0.0.77
     wpmServer: https://packages.webmethods.io
     wpmRegistry: licensed
+  - name: JDBC
+    version: "1.0"
+  - name: WmJDBCAdapter
+    version: 10.3.0.0.34
+    wpmServer: https://packages.webmethods.io
+    wpmRegistry: licensed
 configurationVariables:
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.transactionType
   : NO_TRANSACTION
+  jdbc.SAP TxStore Pool.maxConns: "10"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.password
   : "{AES}aYrXC43dTWsDUHRWG5mhTA=="
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.trustStore
-  : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.heartBeatInterval
   : "0"
+  jdbcfunc.SAPTxStore.failFastMode: false
+  jdbc.SAP TxStore Pool.poolThreshold: "60"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.serviceType
   : COMMAND
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.otherProperties
   : loginTimeout=60;
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.minimumPoolSize
-  : "1"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.useDefaultUser
   : "false"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.databaseName
-  : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.datasourceClass
   : com.wm.dd.jdbcx.oracle.OracleDataSource
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionEnabled
-  : "true"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.proxyEncryptionMode
-  : CLIENT_TO_SERVER
+  jdbc.SAP TxStore Pool.spyenabled: "false"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.poolable
   : "false"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.user
-  : dddd
+  jdbc.SAP TxStore Pool.useSSL: "false"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.dbType
   : ORACLE
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.driverType
-  : Progress® DataDirect®
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.minimumPoolSize
-  : "1"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.keyStore
   : ""
+  jdbc.SAP TxStore Pool.password: "{AES}7EzrljL+N3kbQseeO6Awng=="
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.expireTimeout
   : "1000"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.password
+  : "{AES}aYrXC43dTWsDUHRWG5mhTA=="
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.poolIncrementSize
   : "1"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.poolIncrementSize
-  : "1"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.password
-  : "{AES}XzaFynaZMI4L1ojQOH4uRhU4n40dkx7qspXBLn/Pq+4="
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.systemName
   : PUB400.COM
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.maximumPoolSize
   : "10"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.userId
-  : GSAR
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.blockingTimeout
-  : "1000"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.networkProtocol
-  : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.poolable
   : "false"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.startupBackoffSecs
-  : "10"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.otherProperties
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.networkProtocol
   : ""
+  jdbc.SAP TxStore Pool.spyparms: SpyAttributes=(log=(file)logs/spy/SAP_TxStore_Pool.log;logTName=yes;timestamp=yes)
+  jdbc.SAP TxStore Pool.snoopenabled: "false"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.socketProperties
   : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.startupBackoffSecs
   : "10"
+  jdbc.SAP TxStore Pool.expireTime: "60000"
+  jdbc.SAP TxStore Pool.minConns: "5"
+  jdbc.SAP TxStore Pool.driverAlias: MySQL CC Driver
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.startupRetryCount
+  : "0"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.serverName
+  : dddd
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.proxyEndpoint
+  : ""
+  jdbcfunc.SAPTxStore.connPoolAlias: SAP TxStore Pool
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.trustStore
+  : ""
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.minimumPoolSize
+  : "1"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.databaseName
+  : ""
+  jdbc.SAP TxStore Pool.dbURL: jdbc:mysql://adapter-mysql-80-on-amazonrds.cdmjexwbzoym.us-east-1.rds.amazonaws.com:3306/SAPTRANSACTIONSTORE?useSSL=false&characterEncoding=utf-8&autoReconnect=true&maxReconnects=5&sessionVariables=wait_timeout=2147483
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionEnabled
+  : "true"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.proxyEncryptionMode
+  : CLIENT_TO_SERVER
+  jdbc.SAP TxStore Pool.waitingThread: "10"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.user
+  : dddd
+  jdbc.SAP TxStore Pool.description: Connection Pool for the SAP Transaction Store
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.driverType
+  : Progress® DataDirect®
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.minimumPoolSize
+  : "1"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.poolIncrementSize
+  : "1"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.userId
+  : GSAR
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.blockingTimeout
+  : "1000"
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.startupBackoffSecs
+  : "10"
+  jdbc.SAP TxStore Pool.snoopparms: ddtdbg.ProtocolTraceEnable=true;ddtdbg.ProtocolTraceMaxline=16;ddtdbg.ProtocolTraceLocation=logs/snoop/SAP_TxStore_Pool.log;ddtdbg.ProtocolTraceShowTime=true
+  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.otherProperties
+  : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.blockingTimeout
   : "1000"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.isSecureConnection
@@ -122,16 +152,11 @@ configurationVariables:
   : "10"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionEnabled
   : "false"
+  jdbc.SAP TxStore Pool.userid: sapuser
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.expireTimeout
   : "1000"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionManagerSettings.startupRetryCount
-  : "0"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.portNumber
   : "1521"
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionSettings.serverName
-  : dddd
-  ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.proxyEndpoint
-  : ""
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmJDBCAdapter.com_wm_adapter_wmjdbc_JDBCAdapter.connections.Database_1.connectionManagerSettings.startupRetryCount
   : "0"
   ? artConnection.ShshiExternalJune4Project.project.shshiexternaljune4.WmIBMPowerAdapter.com_wm_adapter_ibmp_WmIBMPowerAdapter.connections.shshi_ibmp.connectionSettings.currentLibrary
